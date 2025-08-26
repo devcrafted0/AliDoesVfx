@@ -1,0 +1,19 @@
+.hide{
+    display: none;
+}
+
+@media (max-width : 1200px) {
+    .hide{
+        display: block;
+    }
+}
+
+.nav-hide{
+    display: flex;
+}
+
+@media (max-width : 1200px) {
+    .nav-hide{
+         display: none;
+    }
+}

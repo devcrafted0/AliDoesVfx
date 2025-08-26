@@ -1,0 +1,331 @@
+/* Comprehensive Fluid Utilities for PostCSS + Tailwind */
+
+@layer utilities {
+  /* ===== FLUID TYPOGRAPHY ===== */
+  
+  /* Fluid Font Sizes */
+  .text-fluid-xs { font-size: clamp(0.75rem, 2vw, 0.875rem); }
+  .text-fluid-sm { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+  .text-fluid-base { font-size: clamp(1rem, 4vw, 1.125rem); }
+  .text-fluid-lg { font-size: clamp(1.125rem, 4.5vw, 1.25rem); }
+  .text-fluid-xl { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+  .text-fluid-2xl { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .text-fluid-3xl { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+  .text-fluid-4xl { font-size: clamp(2.25rem, 8vw, 3rem); }
+  .text-fluid-5xl { font-size: clamp(3rem, 10vw, 4rem); }
+  .text-fluid-6xl { font-size: clamp(3.75rem, 12vw, 5rem); }
+  .text-fluid-7xl { font-size: clamp(4.5rem, 15vw, 6rem); }
+  .text-fluid-8xl { font-size: clamp(6rem, 20vw, 8rem); }
+  .text-fluid-9xl { font-size: clamp(8rem, 25vw, 12rem); }
+
+  /* Fluid Line Heights */
+  .leading-fluid-none { line-height: 1; }
+  .leading-fluid-tight { line-height: clamp(1.1, 3vw, 1.25); }
+  .leading-fluid-snug { line-height: clamp(1.2, 3.5vw, 1.375); }
+  .leading-fluid-normal { line-height: clamp(1.4, 4vw, 1.6); }
+  .leading-fluid-relaxed { line-height: clamp(1.5, 5vw, 1.8); }
+  .leading-fluid-loose { line-height: clamp(1.6, 6vw, 2.2); }
+
+  /* ===== FLUID SPACING ===== */
+  
+  /* Fluid Padding - All Sides */
+  .p-fluid-0 { padding: 0; }
+  .p-fluid-xs { padding: clamp(0.25rem, 1vw, 0.5rem); }
+  .p-fluid-sm { padding: clamp(0.5rem, 2vw, 1rem); }
+  .p-fluid-md { padding: clamp(1rem, 4vw, 1.5rem); }
+  .p-fluid-lg { padding: clamp(1.5rem, 6vw, 2.5rem); }
+  .p-fluid-xl { padding: clamp(2rem, 8vw, 4rem); }
+  .p-fluid-2xl { padding: clamp(3rem, 12vw, 6rem); }
+  .p-fluid-3xl { padding: clamp(4rem, 16vw, 8rem); }
+
+  /* Fluid Padding - Individual Sides */
+  .pt-fluid-xs { padding-top: clamp(0.25rem, 1vw, 0.5rem); }
+  .pt-fluid-sm { padding-top: clamp(0.5rem, 2vw, 1rem); }
+  .pt-fluid-md { padding-top: clamp(1rem, 4vw, 1.5rem); }
+  .pt-fluid-lg { padding-top: clamp(1.5rem, 6vw, 2.5rem); }
+  .pt-fluid-xl { padding-top: clamp(2rem, 8vw, 4rem); }
+  .pt-fluid-2xl { padding-top: clamp(3rem, 12vw, 6rem); }
+
+  .pb-fluid-xs { padding-bottom: clamp(0.25rem, 1vw, 0.5rem); }
+  .pb-fluid-sm { padding-bottom: clamp(0.5rem, 2vw, 1rem); }
+  .pb-fluid-md { padding-bottom: clamp(1rem, 4vw, 1.5rem); }
+  .pb-fluid-lg { padding-bottom: clamp(1.5rem, 6vw, 2.5rem); }
+  .pb-fluid-xl { padding-bottom: clamp(2rem, 8vw, 4rem); }
+  .pb-fluid-2xl { padding-bottom: clamp(3rem, 12vw, 6rem); }
+
+  .pl-fluid-xs { padding-left: clamp(0.25rem, 1vw, 0.5rem); }
+  .pl-fluid-sm { padding-left: clamp(0.5rem, 2vw, 1rem); }
+  .pl-fluid-md { padding-left: clamp(1rem, 4vw, 1.5rem); }
+  .pl-fluid-lg { padding-left: clamp(1.5rem, 6vw, 2.5rem); }
+  .pl-fluid-xl { padding-left: clamp(2rem, 8vw, 4rem); }
+
+  .pr-fluid-xs { padding-right: clamp(0.25rem, 1vw, 0.5rem); }
+  .pr-fluid-sm { padding-right: clamp(0.5rem, 2vw, 1rem); }
+  .pr-fluid-md { padding-right: clamp(1rem, 4vw, 1.5rem); }
+  .pr-fluid-lg { padding-right: clamp(1.5rem, 6vw, 2.5rem); }
+  .pr-fluid-xl { padding-right: clamp(2rem, 8vw, 4rem); }
+
+  /* Fluid Margin - All Sides */
+  .m-fluid-0 { margin: 0; }
+  .m-fluid-xs { margin: clamp(0.25rem, 1vw, 0.5rem); }
+  .m-fluid-sm { margin: clamp(0.5rem, 2vw, 1rem); }
+  .m-fluid-md { margin: clamp(1rem, 4vw, 1.5rem); }
+  .m-fluid-lg { margin: clamp(1.5rem, 6vw, 2.5rem); }
+  .m-fluid-xl { margin: clamp(2rem, 8vw, 4rem); }
+  .m-fluid-2xl { margin: clamp(3rem, 12vw, 6rem); }
+
+  /* Fluid Margin - Individual Sides */
+  .mt-fluid-0 { margin-top: 0; }
+  .mt-fluid-xs { margin-top: clamp(0.25rem, 1vw, 0.5rem); }
+  .mt-fluid-sm { margin-top: clamp(0.5rem, 2vw, 1rem); }
+  .mt-fluid-md { margin-top: clamp(1rem, 4vw, 1.5rem); }
+  .mt-fluid-lg { margin-top: clamp(1.5rem, 6vw, 2.5rem); }
+  .mt-fluid-xl { margin-top: clamp(2rem, 8vw, 4rem); }
+  .mt-fluid-2xl { margin-top: clamp(3rem, 12vw, 6rem); }
+  .mt-fluid-3xl { margin-top: clamp(4rem, 16vw, 8rem); }
+
+  .mb-fluid-0 { margin-bottom: 0; }
+  .mb-fluid-xs { margin-bottom: clamp(0.25rem, 1vw, 0.5rem); }
+  .mb-fluid-sm { margin-bottom: clamp(0.5rem, 2vw, 1rem); }
+  .mb-fluid-md { margin-bottom: clamp(1rem, 4vw, 1.5rem); }
+  .mb-fluid-lg { margin-bottom: clamp(1.5rem, 6vw, 2.5rem); }
+  .mb-fluid-xl { margin-bottom: clamp(2rem, 8vw, 4rem); }
+  .mb-fluid-2xl { margin-bottom: clamp(3rem, 12vw, 6rem); }
+
+  .ml-fluid-xs { margin-left: clamp(0.25rem, 1vw, 0.5rem); }
+  .ml-fluid-sm { margin-left: clamp(0.5rem, 2vw, 1rem); }
+  .ml-fluid-md { margin-left: clamp(1rem, 4vw, 1.5rem); }
+  .ml-fluid-lg { margin-left: clamp(1.5rem, 6vw, 2.5rem); }
+  .ml-fluid-xl { margin-left: clamp(2rem, 8vw, 4rem); }
+
+  .mr-fluid-xs { margin-right: clamp(0.25rem, 1vw, 0.5rem); }
+  .mr-fluid-sm { margin-right: clamp(0.5rem, 2vw, 1rem); }
+  .mr-fluid-md { margin-right: clamp(1rem, 4vw, 1.5rem); }
+  .mr-fluid-lg { margin-right: clamp(1.5rem, 6vw, 2.5rem); }
+  .mr-fluid-xl { margin-right: clamp(2rem, 8vw, 4rem); }
+
+  .mx-fluid-1 { margin-left: clamp(0.25rem, 0.5vw, 0.5rem); margin-right: clamp(0.25rem, 0.5vw, 0.5rem); }
+  .mx-fluid-2 { margin-left: clamp(0.5rem, 1vw, 1rem); margin-right: clamp(0.5rem, 1vw, 1rem); }
+  .mx-fluid-3 { margin-left: clamp(0.75rem, 1.5vw, 1.5rem); margin-right: clamp(0.75rem, 1.5vw, 1.5rem); }
+  .mx-fluid-4 { margin-left: clamp(1rem, 2vw, 2rem); margin-right: clamp(1rem, 2vw, 2rem); }
+  .mx-fluid-5 { margin-left: clamp(1.25rem, 2.5vw, 2.5rem); margin-right: clamp(1.25rem, 2.5vw, 2.5rem); }
+  .mx-fluid-6 { margin-left: clamp(1.5rem, 3vw, 3rem); margin-right: clamp(1.5rem, 3vw, 3rem); }
+  .mx-fluid-7 { margin-left: clamp(1.75rem, 3.5vw, 3.5rem); margin-right: clamp(1.75rem, 3.5vw, 3.5rem); }
+  .mx-fluid-8 { margin-left: clamp(2rem, 4vw, 4rem); margin-right: clamp(2rem, 4vw, 4rem); }
+  .mx-fluid-9 { margin-left: clamp(2.25rem, 4.5vw, 4.5rem); margin-right: clamp(2.25rem, 4.5vw, 4.5rem); }
+  .mx-fluid-10 { margin-left: clamp(2.5rem, 5vw, 5rem); margin-right: clamp(2.5rem, 5vw, 5rem); }
+
+  /* Vertical margins */
+  .my-fluid-1 { margin-top: clamp(0.25rem, 0.5vw, 0.5rem); margin-bottom: clamp(0.25rem, 0.5vw, 0.5rem); }
+  .my-fluid-2 { margin-top: clamp(0.5rem, 1vw, 1rem); margin-bottom: clamp(0.5rem, 1vw, 1rem); }
+  .my-fluid-3 { margin-top: clamp(0.75rem, 1.5vw, 1.5rem); margin-bottom: clamp(0.75rem, 1.5vw, 1.5rem); }
+  .my-fluid-4 { margin-top: clamp(1rem, 2vw, 2rem); margin-bottom: clamp(1rem, 2vw, 2rem); }
+  .my-fluid-5 { margin-top: clamp(1.25rem, 2.5vw, 2.5rem); margin-bottom: clamp(1.25rem, 2.5vw, 2.5rem); }
+  .my-fluid-6 { margin-top: clamp(1.5rem, 3vw, 3rem); margin-bottom: clamp(1.5rem, 3vw, 3rem); }
+  .my-fluid-7 { margin-top: clamp(1.75rem, 3.5vw, 3.5rem); margin-bottom: clamp(1.75rem, 3.5vw, 3.5rem); }
+  .my-fluid-8 { margin-top: clamp(2rem, 4vw, 4rem); margin-bottom: clamp(2rem, 4vw, 4rem); }
+  .my-fluid-9 { margin-top: clamp(2.25rem, 4.5vw, 4.5rem); margin-bottom: clamp(2.25rem, 4.5vw, 4.5rem); }
+  .my-fluid-10 { margin-top: clamp(2.5rem, 5vw, 5rem); margin-bottom: clamp(2.5rem, 5vw, 5rem); }
+
+  /* ===== FLUID DIMENSIONS ===== */
+  
+  /* Fluid Width */
+  .w-fluid-xs { width: clamp(150px, 30vw, 250px); }
+  .w-fluid-sm { width: clamp(200px, 40vw, 350px); }
+  .w-fluid-md { width: clamp(300px, 60vw, 500px); }
+  .w-fluid-lg { width: clamp(450px, 70vw, 700px); }
+  .w-fluid-xl { width: clamp(600px, 80vw, 900px); }
+  .w-fluid-2xl { width: clamp(800px, 90vw, 1200px); }
+  .w-fluid-3xl { width: clamp(1000px, 95vw, 1400px); }
+  .w-fluid-full { width: clamp(320px, 100vw, 1600px); }
+  .w-fluid-screen { width: 100vw; }
+
+  /* Fluid Height */
+  .h-fluid-xs { height: clamp(100px, 15vh, 150px); }
+  .h-fluid-sm { height: clamp(150px, 25vh, 250px); }
+  .h-fluid-md { height: clamp(250px, 40vh, 400px); }
+  .h-fluid-lg { height: clamp(350px, 60vh, 600px); }
+  .h-fluid-xl { height: clamp(450px, 70vh, 700px); }
+  .h-fluid-2xl { height: clamp(600px, 80vh, 900px); }
+  .h-fluid-screen { height: 100vh; }
+  .h-fluid-half-screen { height: clamp(300px, 50vh, 600px); }
+
+  /* Fluid Max Width */
+  .max-w-fluid-xs { max-width: clamp(200px, 40vw, 300px); }
+  .max-w-fluid-sm { max-width: clamp(300px, 50vw, 450px); }
+  .max-w-fluid-md { max-width: clamp(400px, 70vw, 600px); }
+  .max-w-fluid-lg { max-width: clamp(600px, 80vw, 800px); }
+  .max-w-fluid-xl { max-width: clamp(800px, 90vw, 1000px); }
+  .max-w-fluid-2xl { max-width: clamp(1000px, 95vw, 1200px); }
+
+  /* ===== FLUID LAYOUT ===== */
+  
+  /* Fluid Gap for Grid/Flex */
+  .gap-fluid-0 { gap: 0; }
+  .gap-fluid-xs { gap: clamp(0.25rem, 1vw, 0.5rem); }
+  .gap-fluid-sm { gap: clamp(0.5rem, 2vw, 1rem); }
+  .gap-fluid-md { gap: clamp(1rem, 4vw, 1.5rem); }
+  .gap-fluid-lg { gap: clamp(1.5rem, 6vw, 2.5rem); }
+  .gap-fluid-xl { gap: clamp(2rem, 8vw, 4rem); }
+  .gap-fluid-2xl { gap: clamp(3rem, 12vw, 6rem); }
+
+  /* Fluid Border Radius */
+  .rounded-fluid-none { border-radius: 0; }
+  .rounded-fluid-xs { border-radius: clamp(0.125rem, 0.5vw, 0.25rem); }
+  .rounded-fluid-sm { border-radius: clamp(0.25rem, 1vw, 0.5rem); }
+  .rounded-fluid-md { border-radius: clamp(0.5rem, 2vw, 1rem); }
+  .rounded-fluid-lg { border-radius: clamp(0.75rem, 3vw, 1.5rem); }
+  .rounded-fluid-xl { border-radius: clamp(1rem, 4vw, 2rem); }
+  .rounded-fluid-2xl { border-radius: clamp(1.5rem, 6vw, 3rem); }
+  .rounded-fluid-3xl { border-radius: clamp(2rem, 8vw, 4rem); }
+  .rounded-fluid-full { border-radius: 9999px; }
+
+  /* ===== RESPONSIVE UTILITIES ===== */
+  
+  /* Fluid Transform Scale */
+  .scale-fluid-sm { transform: scale(clamp(0.8, 2vw, 0.95)); }
+  .scale-fluid-md { transform: scale(clamp(0.9, 3vw, 1.05)); }
+  .scale-fluid-lg { transform: scale(clamp(1, 4vw, 1.2)); }
+}
+
+@layer components {
+  /* ===== FLUID COMPONENT CLASSES ===== */
+  
+  /* Fluid Container */
+  .container-fluid {
+    width: clamp(320px, 90vw, 1200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 4vw, 2rem);
+    padding-right: clamp(1rem, 4vw, 2rem);
+  }
+
+  .container-fluid-wide {
+    width: clamp(320px, 95vw, 1400px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 3vw, 1.5rem);
+    padding-right: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .container-fluid-narrow {
+    width: clamp(280px, 80vw, 800px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 5vw, 3rem);
+    padding-right: clamp(1rem, 5vw, 3rem);
+  }
+
+  /* Fluid Section Spacing */
+  .section-fluid {
+    padding-top: clamp(2rem, 8vw, 6rem);
+    padding-bottom: clamp(2rem, 8vw, 6rem);
+  }
+
+  .section-fluid-sm {
+    padding-top: clamp(1rem, 4vw, 3rem);
+    padding-bottom: clamp(1rem, 4vw, 3rem);
+  }
+
+  .section-fluid-lg {
+    padding-top: clamp(3rem, 12vw, 8rem);
+    padding-bottom: clamp(3rem, 12vw, 8rem);
+  }
+
+  /* Fluid Content Areas */
+  .prose-fluid {
+    max-width: clamp(400px, 75vw, 700px);
+    line-height: clamp(1.4, 4vw, 1.7);
+    font-size: clamp(1rem, 4vw, 1.125rem);
+  }
+
+  .prose-fluid-wide {
+    max-width: clamp(500px, 85vw, 900px);
+    line-height: clamp(1.5, 4.5vw, 1.8);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  /* Fluid Cards */
+  .card-fluid {
+    width: clamp(280px, 90vw, 400px);
+    padding: clamp(1rem, 4vw, 2rem);
+    border-radius: clamp(0.5rem, 2vw, 1rem);
+    box-shadow: 0 clamp(4px, 1vw, 8px) clamp(20px, 4vw, 40px) rgba(0, 0, 0, 0.1);
+  }
+
+  .card-fluid-wide {
+    width: clamp(350px, 95vw, 600px);
+    padding: clamp(1.5rem, 5vw, 3rem);
+    border-radius: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  /* Fluid Buttons */
+  .btn-fluid {
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+    font-size: clamp(0.875rem, 3vw, 1.125rem);
+    border-radius: clamp(0.25rem, 1vw, 0.5rem);
+    min-height: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .btn-fluid-lg {
+    padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1.5rem, 6vw, 3rem);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    border-radius: clamp(0.5rem, 2vw, 0.75rem);
+    min-height: clamp(3rem, 10vw, 4rem);
+  }
+
+  /* Fluid Grid Systems */
+  .grid-fluid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 300px), 1fr));
+    gap: clamp(1rem, 4vw, 2rem);
+  }
+
+  .grid-fluid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 45vw, 350px), 1fr));
+    gap: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  /* Fluid Aspect Ratios */
+  .aspect-fluid-square {
+    aspect-ratio: 1 / 1;
+    width: clamp(200px, 50vw, 400px);
+  }
+
+  .aspect-fluid-video {
+    aspect-ratio: 16 / 9;
+    width: clamp(300px, 80vw, 800px);
+  }
+
+  .aspect-fluid-card {
+    aspect-ratio: 4 / 3;
+    width: clamp(250px, 60vw, 500px);
+  }
+
+  /* Fluid Navigation */
+  .nav-fluid {
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+    font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+
+  .nav-fluid a {
+    padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
+    margin: 0 clamp(0.25rem, 1vw, 0.5rem);
+  }
+
+  /* Fluid Hero Section */
+  .hero-fluid {
+    min-height: clamp(400px, 70vh, 600px);
+    padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-fluid-full {
+    min-height: 100vh;
+    padding: clamp(3rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem);
+  }
+}
