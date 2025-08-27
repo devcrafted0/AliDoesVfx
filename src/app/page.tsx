@@ -21,7 +21,7 @@ const page = () => {
           <FirstLogin />
 
         <div className='pl-fluid-xl pr-fluid-xl w-screen pt-fluid-xl [@media(max-width:900px)]:text-center'>
-            <BlurText text="Transform Your Vision Into" delay={20} animateBy="letters" direction="top" className="text-[clamp(1.8rem,5vw,4rem)] text-main font-extrabold [@media(max-width:900px)]:w-fit [@media(max-width:900px)]:mx-auto"/>
+            <BlurText text="Transform Your Vision Into" delay={20} animateBy="letters" direction="top" className="text-[clamp(1.44rem,5vw,4rem)] text-main font-extrabold [@media(max-width:900px)]:w-fit [@media(max-width:900px)]:mx-auto"/>
 
             <SplitText text="Hollywood Magic" className="text-[clamp(1.8rem,5vw,4rem)] text-main font-extrabold" delay={100} duration={0.6} ease="power3.out" splitType="chars" from={{ opacity: 0, y: 40 }} to={{ opacity: 1, y: 0 }} threshold={0.1} rootMargin="-100px" textAlign="center" />
             <br />

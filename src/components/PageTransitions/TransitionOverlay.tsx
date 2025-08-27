@@ -33,8 +33,13 @@ export default function TransitionOverlay() {
           0% {
             filter: drop-shadow(0 0 2px #FFB400);
           }
+
+          50%{
+            filter: drop-shadow(0 0 4px #FFB400);
+          }
+
           100% {
-            filter: drop-shadow(0 0 20px #FFB400);
+            filter: drop-shadow(0 0 15px #FFB400);
           }
         }
       `}</style>
@@ -49,9 +54,8 @@ export default function TransitionOverlay() {
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-50 bg-[#201701] flex justify-center items-center"
           >
-          <video ref={videoRef} muted autoPlay className="animate-[glow_1s_forwards]" >
-            <source src="logo.webm" type="video/webm"/> 
-            <source src="logo.mov" type="video/quicktime"/> 
+          <video ref={videoRef} muted autoPlay className="animate-[glow_1s_forwards]">
+            <source src="logo.webm" type="video/webm"/>
           </video>
           </motion.div>
         )}
