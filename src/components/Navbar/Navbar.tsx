@@ -132,7 +132,7 @@ const Navbar = () => {
                     <Link href="/contact">
                         <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Contact</button>
                     </Link>
-                    <button className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400]">
+                    <div className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400]">
                       <SignedOut>
                             <li className="glass glass-effect overflow-hidden text-white font-michroma cursor-pointer transition-all duration-200 ease-in-out px-5 py-2 rounded-full transform hover:scale-105">
                                 <SignInButton />
@@ -173,7 +173,7 @@ const Navbar = () => {
                                 />
                             </li>
                         </SignedIn>
-                    </button>
+                    </div>
                 </ul>
                 
                 <X className="absolute top-5 right-5 text-red-500 cursor-pointer" onClick={()=>setIsOpen(false)}/>
