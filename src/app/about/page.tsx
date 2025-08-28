@@ -45,7 +45,7 @@ const page = () => {
       </div>
 
       <div className='p-[clamp(1rem,2vw,2.5rem)] mt-3'>
-        <div className='overflow-hidden flex items-center gap-4'>
+        <div className='overflow-hidden flex items-center gap-1 sm:gap-4 md:gap-4'>
           <span className='text-[clamp(1.35rem,5vw,4rem)] text-main font-extrabold'>My</span>
             <WordRotate
           className='text-[clamp(1.35rem,5vw,4rem)] text-main font-extrabold'
@@ -53,9 +53,8 @@ const page = () => {
           />
         </div>
 
-        <ShinyText className='max-w-[80ch] text-[clamp(0.50rem,1vw,1.125rem)] text-gray-100/60' text='After years in the industry, I realized that my greatest joy came not just from creating, but from sharing knowledge. VFX can often seem intimidating, filled with complex tools and technical jargon. My mission is to demystify visual effects and make them accessible to anyone with passion and creativity. Through my courses, I focus on hands-on, practical training designed to help aspiring artists build professional, industry-ready portfolios.'/>
+        <ShinyText className='max-w-[80ch] text-[clamp(0.7rem,1vw,1.125rem)] text-gray-100/60' text='After years in the industry, I realized that my greatest joy came not just from creating, but from sharing knowledge. VFX can often seem intimidating, filled with complex tools and technical jargon. My mission is to demystify visual effects and make them accessible to anyone with passion and creativity. Through my courses, I focus on hands-on, practical training designed to help aspiring artists build professional, industry-ready portfolios.'/>
       </div>
-
 
     </div>
   )
