@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
+import Meteors from "../magicui/meteors";
 
 export default function TransitionOverlay() {
   const pathname = usePathname();
@@ -31,15 +32,15 @@ export default function TransitionOverlay() {
       <style jsx>{`
         @keyframes glow {
           0% {
-            filter: drop-shadow(0 0 2px #FFB400);
+            filter: drop-shadow(0 0 0px #FFB400);
           }
 
           50%{
-            filter: drop-shadow(0 0 4px #FFB400);
+            filter: drop-shadow(0 0 10px #FFB400);
           }
 
           100% {
-            filter: drop-shadow(0 0 15px #FFB400);
+            filter: drop-shadow(0 0 30px #FFB400);
           }
         }
       `}</style>
@@ -52,11 +53,12 @@ export default function TransitionOverlay() {
             animate={{ y: "0%" }}
             exit={{ y: "100%" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-50 bg-[#201701] flex justify-center items-center"
+            className="fixed inset-0 z-50 bg-[#201701]"
           >
-          <video ref={videoRef} muted autoPlay className="animate-[glow_1s_forwards]">
-            <source src="logo.webm" type="video/webm"/>
-          </video>
+              <Meteors number={20} angle={224} minDuration={0.2}/>
+              <video ref={videoRef} muted autoPlay className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] z-40 animate-[glow_1s_forwards]">
+                <source src="logo.webm" type="video/webm"/>
+              </video>
           </motion.div>
         )}
       </AnimatePresence>

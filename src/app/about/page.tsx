@@ -2,7 +2,6 @@ import Navbar from '@/components/Navbar/Navbar';
 import React from 'react'
 import { TextMeteors } from '@/components/TextMeteors';
 import { OrbitImages } from '@/components/OrbitImages';
-import { div } from 'motion/react-client';
 import ShinyText from '@/components/ShinyText/ShinyText';
 import { CardCarousel } from '@/components/ui/card-carousel';
 import AOSWrapper from "@/components/AOSWrapper";
