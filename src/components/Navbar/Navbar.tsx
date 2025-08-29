@@ -56,8 +56,8 @@ const Navbar = () => {
                             <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">About</li>
                         </Link>
 
-                        <Link href="/courses">
-                            <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Courses</li>
+                        <Link href="/videos">
+                            <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Videos</li>
                         </Link>
                         <Link href="/contact">
                             <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Contact</li>
@@ -126,8 +126,8 @@ const Navbar = () => {
                     <Link href="/about">
                         <button onClick={()=>setIsOpen(false)}  className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">About</button>
                     </Link>
-                    <Link href="/courses">
-                        <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Courses</button>
+                    <Link href="/videos">
+                        <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Videos</button>
                     </Link>
                     <Link href="/contact">
                         <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Contact</button>

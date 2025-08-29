@@ -23,11 +23,11 @@ const page = () => {
       <div>
         <Navbar/>
       </div>
-        <h1 className='mt-8 font-bold text-center text-4xl text-main'>Courses</h1>
+        <h1 className='mt-8 font-bold text-center text-4xl text-main'>Videos</h1>
         
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6 p-6">
           {videos.map((video, index) => (
-            <a key={index} href={`/courses/${video.id}`}>
+            <a key={index} href={`/videos/${video.id}`}>
               <div
                 className="flex flex-col rounded-xl border border-white/20 bg-white/5 shadow-md overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-transform duration-200 cursor-pointer"
                 >
