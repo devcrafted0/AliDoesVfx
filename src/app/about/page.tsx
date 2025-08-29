@@ -65,7 +65,7 @@ const page = () => {
 
         <div className='w-screen flex items-center [@media(max-width:520px)]:justify-center mt-5'>
           <a
-          href="/courses"
+          href="/videos"
           className="
             inline-flex justify-center items-center relative h-[50px] px-[30px] border-2 border-[#FFB400] bg-[#1A1A1A]
             select-none whitespace-nowrap transition-all duration-75 ease-linear
