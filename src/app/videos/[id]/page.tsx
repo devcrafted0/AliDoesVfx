@@ -4,6 +4,7 @@ import BouncingLoader from "@/components/BouncingLoader/BouncingLoader";
 import Navbar from "@/components/Navbar/Navbar";
 import NotFound from "@/components/NotFound/NotFound";
 import { useEffect, useState } from "react";
+import CustomYouTubePlayer from "@/components/MediaPlayer/CustomMediaPlayer";
 
 type Video = {
   id: number;
@@ -44,7 +45,7 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
   if (!video) return <NotFound href="/videos" pageName="Videos"/>
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
         <Navbar/>
       </div>
@@ -56,8 +57,9 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
       </div>
 
       <div className="p-5">
-        <p className="text-gray-600">{video.description}</p>
-        <p className="text-gray-600">{video.youtubeUrl}</p>
+        <h1 className="text-main font-bold text-center text-[clamp(0.90rem,1vw,5rem)]">Video</h1>
+        <CustomYouTubePlayer url={video.youtubeUrl} />
+        <p className="text-gray-400 text-[clamp(0.90rem,1vw,1.125rem)]">{video.description}</p>
       </div>
     </div>
   );
