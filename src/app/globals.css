@@ -21,6 +21,9 @@ body{
   background-color: #FFB400;
 }
 
+.bg-red{
+  background: red;
+}
 
 .hero-gradient{
   background: linear-gradient(to right, 

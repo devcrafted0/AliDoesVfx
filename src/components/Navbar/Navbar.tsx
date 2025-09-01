@@ -21,15 +21,19 @@ import {
   UserProfile
 } from '@clerk/nextjs'
 
+const ADMIN_USER_ID = "user_326Rv6xoB5tjaOgZeIuZzWYSzZf";
+
 const Navbar = () => {
 
     const [isOpen , setIsOpen] = useState<boolean>(false);
 
-    const { isLoaded, user } = useUser();
+    const { isLoaded, user , isSignedIn } = useUser();
 
      if (!isLoaded) {
         return null;
     }
+
+    const isAdmin = user?.id === ADMIN_USER_ID;
 
   return (
     <motion.div initial={{ y: -50, filter: "blur(10px)", opacity: 0 }}
@@ -59,6 +63,9 @@ const Navbar = () => {
                         <Link href="/videos">
                             <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Videos</li>
                         </Link>
+                        {isLoaded && isAdmin && (<Link href="/dashboard">
+                          <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Dashboard</li>
+                        </Link>)}
                         <Link href="/contact">
                             <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Contact</li>
                         </Link>
@@ -129,6 +136,9 @@ const Navbar = () => {
                     <Link href="/videos">
                         <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Videos</button>
                     </Link>
+                    {isLoaded && isAdmin && (<Link href="/dashboard">
+                          <li className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Dashboard</li>
+                        </Link>)}
                     <Link href="/contact">
                         <button onClick={()=>setIsOpen(false)} className="text-white font-michroma font-bold cursor-pointer hover:text-[#FFB400] transition-colors duration-200 ease-in-out hover:drop-shadow-[0_0_5px_#FFB400] ">Contact</button>
                     </Link>
