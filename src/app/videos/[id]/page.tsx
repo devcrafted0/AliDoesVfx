@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import NotFound from "@/components/NotFound/NotFound";
 import { useEffect, useState } from "react";
 import CustomYouTubePlayer from "@/components/MediaPlayer/CustomMediaPlayer";
+import { ChartNoAxesColumn } from "lucide-react";
 
 type Video = {
   id: number;
@@ -14,6 +15,7 @@ type Video = {
   thumbnail?: string;
   publishedAt: Date;
   createdAt: Date;
+  views : number;
 };
 
 
@@ -41,6 +43,11 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
     fetchVideo();
   }, [id]);
 
+  useEffect(() => {
+    fetch(`/api/videos/${id}`, { method: "POST" });
+  }, [id]);
+
+
   if (loading) return <BouncingLoader/>;
   if (!video) return <NotFound href="/videos" pageName="Videos"/>
 
@@ -59,6 +66,16 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
       <div className="p-5">
         <h1 className="text-main font-bold text-center text-[clamp(0.90rem,1vw,5rem)]">Video</h1>
         <CustomYouTubePlayer url={video.youtubeUrl} />
+        <div className="w-screen p-3">
+            <h1 className="text-gray-300 text-2xl font-bold flex items-center gap-1">
+                <span>
+                  {video.views} Views
+                </span>
+                <span>
+                  <ChartNoAxesColumn />
+                </span>
+              </h1>
+        </div>
         <p className="text-gray-400 text-[clamp(0.90rem,1vw,1.125rem)]">{video.description}</p>
       </div>
     </div>

@@ -1,6 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { currentUser } from "@clerk/nextjs/server";
 
+// Getting A Specific Video
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
@@ -30,6 +32,7 @@ export async function GET(
   }
 }
 
+//Deleting a specific Video
 export async function DELETE(req: Request, { params }: {params : {id : string}}) {
   try {
     const userId = parseInt(params.id, 10);
@@ -50,6 +53,7 @@ export async function DELETE(req: Request, { params }: {params : {id : string}})
   }
 }
 
+// Updating a Specific Video
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
     const id = parseInt(params.id);
@@ -91,6 +95,74 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
     return NextResponse.json(
       { error: "Failed to replace video", details: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+// Adding A View To The Specific Video
+export async function POST(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await context.params;
+    const user = await currentUser();
+
+    if (!user) {
+      return NextResponse.json({ error: "Authentication required" }, { status: 401 });
+    }
+
+    const videoId = parseInt(id, 10);
+    if (isNaN(videoId) || videoId <= 0) {
+      return NextResponse.json({ error: "Invalid video ID" }, { status: 400 });
+    }
+
+    const video = await prisma.video.findUnique({
+      where: { id: videoId },
+      select: { id: true },
+    });
+
+    if (!video) {
+      return NextResponse.json({ error: "Video not found" }, { status: 404 });
+    }
+
+    const existingView = await prisma.view.findFirst({
+      where: {
+        userId: user.id,
+        videoId,
+      },
+    });
+
+    if (existingView) {
+      return NextResponse.json(
+        { message: "User already viewed this video", newView: false },
+        { status: 200 }
+      );
+    }
+
+    await prisma.view.create({
+      data: {
+        userId: user.id,
+        videoId,
+      },
+    });
+
+    await prisma.video.update({
+      where: { id: videoId },
+      data: {
+        views: { increment: 1 },
+      },
+    });
+
+    return NextResponse.json(
+      { message: "View recorded successfully", newView: true },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error tracking video view:", error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Internal server error" },
       { status: 500 }
     );
   }
