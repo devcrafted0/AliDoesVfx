@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import CustomYouTubePlayer from "@/components/MediaPlayer/CustomMediaPlayer";
 import { ChartNoAxesColumn } from "lucide-react";
 import DynamicLikeButton from "@/components/DynamicLikeButton";
+import Comments from "@/components/Comments";
+import { useUser } from "@clerk/nextjs";
 
 type Video = {
   id: number;
@@ -19,6 +21,7 @@ type Video = {
   views : number;
   likes : number;
   initialLiked : boolean;
+  comments : [];
 };
 
 
@@ -27,6 +30,7 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
   const [video, setVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useUser();
 
   useEffect(() => {
     async function fetchVideo() {
@@ -53,6 +57,7 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
 
   if (loading) return <BouncingLoader/>;
   if (!video) return <NotFound href="/videos" pageName="Videos"/>
+  if(!user) return null;
 
   return (
     <div className="relative overflow-hidden">
@@ -81,6 +86,13 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
             <h1 className="text-gray-200 text-xl font-bold flex items-center gap-1 px-4 py-2 bg-gray-400/20 rounded-full hover:bg-gray-400/40 transition-all duration-150">
               <DynamicLikeButton videoId={video.id} initialLiked={video.initialLiked} initialCount={video.likes}/>
             </h1>
+        </div>
+        <div>
+          <Comments  videoId={video.id} initialComments={video.comments} user={{
+            id: user.id,
+            username: user.username || user.firstName || "Anonymous",
+            imageUrl : user.imageUrl
+          }}/>
         </div>
         <p className="text-gray-400 text-[clamp(0.90rem,1vw,1.125rem)]">{video.description}</p>
       </div>
