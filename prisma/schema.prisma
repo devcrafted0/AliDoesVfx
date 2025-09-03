@@ -24,6 +24,7 @@ model Video {
   comments  Json?
 
   viewsBy   View[]
+  likedBy Like[]
 }
 
 model View {
@@ -32,4 +33,13 @@ model View {
   videoId   Int
   createdAt DateTime @default(now())
   video     Video @relation(fields: [videoId], references: [id])
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  videoId   Int
+  createdAt DateTime @default(now())
+  video     Video    @relation(fields: [videoId], references: [id])
+  @@unique([userId, videoId])
 }

@@ -22,7 +22,27 @@ export async function GET(
       return NextResponse.json({ message: "Video not found" }, { status: 404 });
     }
 
-    return NextResponse.json(video);
+    // 👇 New logic: check if user liked this video
+    const user = await currentUser();
+    let initialLiked = false;
+
+    if (user) {
+      const existingLike = await prisma.like.findUnique({
+        where: {
+          userId_videoId: {
+            userId: user.id,
+            videoId: id,
+          },
+        },
+      });
+      initialLiked = !!existingLike;
+    }
+
+    // ✅ Merge the new field without breaking existing shape
+    return NextResponse.json({
+      ...video,
+      initialLiked,
+    });
   } catch (error) {
     console.error("Error fetching video:", error);
     return NextResponse.json(

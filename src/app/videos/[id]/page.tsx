@@ -6,6 +6,7 @@ import NotFound from "@/components/NotFound/NotFound";
 import { useEffect, useState } from "react";
 import CustomYouTubePlayer from "@/components/MediaPlayer/CustomMediaPlayer";
 import { ChartNoAxesColumn } from "lucide-react";
+import DynamicLikeButton from "@/components/DynamicLikeButton";
 
 type Video = {
   id: number;
@@ -16,6 +17,8 @@ type Video = {
   publishedAt: Date;
   createdAt: Date;
   views : number;
+  likes : number;
+  initialLiked : boolean;
 };
 
 
@@ -66,15 +69,18 @@ export default function VideoDetails({ params }: { params: {id : string} }) {
       <div className="p-5">
         <h1 className="text-main font-bold text-center text-[clamp(0.90rem,1vw,5rem)]">Video</h1>
         <CustomYouTubePlayer url={video.youtubeUrl} />
-        <div className="w-screen p-3">
-            <h1 className="text-gray-300 text-2xl font-bold flex items-center gap-1">
+        <div className="w-screen p-3 flex gap-2">
+            <h1 className="text-gray-200 text-xl font-bold flex items-center gap-1 px-4 py-2 bg-gray-400/20 rounded-full hover:bg-gray-400/40 transition-all duration-150">
                 <span>
                   {video.views} Views
                 </span>
                 <span>
                   <ChartNoAxesColumn />
                 </span>
-              </h1>
+            </h1>
+            <h1 className="text-gray-200 text-xl font-bold flex items-center gap-1 px-4 py-2 bg-gray-400/20 rounded-full hover:bg-gray-400/40 transition-all duration-150">
+              <DynamicLikeButton videoId={video.id} initialLiked={video.initialLiked} initialCount={video.likes}/>
+            </h1>
         </div>
         <p className="text-gray-400 text-[clamp(0.90rem,1vw,1.125rem)]">{video.description}</p>
       </div>
