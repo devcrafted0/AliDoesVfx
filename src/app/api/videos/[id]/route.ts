@@ -53,21 +53,26 @@ export async function GET(
 }
 
 //Deleting a specific Video
-export async function DELETE(req: Request, { params }: {params : {id : string}}) {
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
-    const userId = parseInt(params.id, 10);
+    const videoId = parseInt(params.id, 10);
 
-    const deletedUser = await prisma.video.delete({
-      where: { id: userId },
+    // Delete dependent records first
+    await prisma.view.deleteMany({ where: { videoId } });
+    await prisma.like.deleteMany({ where: { videoId } });
+
+    // Now delete the video
+    const deletedVideo = await prisma.video.delete({
+      where: { id: videoId },
     });
 
     return NextResponse.json(
-      { message: "User deleted successfully", user: deletedUser },
+      { message: "Video deleted successfully", video: deletedVideo },
       { status: 200 }
     );
   } catch (error: any) {
     return NextResponse.json(
-      { error: "Failed to delete user", details: error.message },
+      { error: "Failed to delete video", details: error.message },
       { status: 500 }
     );
   }

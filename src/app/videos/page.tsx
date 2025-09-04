@@ -2,6 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar/Navbar';
+import BouncingLoader from '@/components/BouncingLoader/BouncingLoader';
+import { ChartNoAxesColumn } from 'lucide-react';
+import { AiFillLike } from 'react-icons/ai';
+import { LiaCommentSolid } from "react-icons/lia";
 
 const page = () => {
 
@@ -9,10 +13,19 @@ const page = () => {
   const [query , setQuery] = useState('');
   const [filteredVideos, setFilteredVideos] = useState<any[]>([]);
 
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true)
+
   useEffect(() => {
-    fetch("/api/videos")
+    try{
+      fetch("/api/videos")
       .then((res) => res.json())
       .then((data) => setVideos(data));
+    } catch(err: any){
+      setError(err.message);
+    } finally{
+      setLoading(false);
+    }
   }, []);
 
   function truncateText(text: string, maxLength: number) {
@@ -28,6 +41,8 @@ const page = () => {
   
   const videosToRender = query ? filteredVideos : videos;
 
+  if (loading) return <BouncingLoader/>;
+
   return (
     <div className='overflow-hidden'>
       <div>
@@ -39,10 +54,12 @@ const page = () => {
       </div>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 p-6">
-          {videosToRender.length > 0 ? (videosToRender.map((video, index) => (
+          {videosToRender.length > 0 ? (videosToRender.map((video, index) => {
+            const commentCount = video.comments ? video.comments.length : 0;
+            return(
             <a key={index} href={`/videos/${video.id}`}>
               <div
-                className="flex flex-col rounded-xl border border-white/20 bg-white/5 shadow-md overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-transform duration-200 cursor-pointer"
+                className="flex flex-col h-full rounded-xl border border-white/20 bg-white/5 shadow-md overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-transform duration-200 cursor-pointer"
                 >
                 <div className="w-full aspect-video overflow-hidden bg-black flex justify-center items-center">
                   <img
@@ -56,13 +73,32 @@ const page = () => {
                   <h1 className="font-semibold text-sm text-white mb-2 line-clamp-2">
                     {video.title}
                   </h1>
-                  <p className="text-gray-400 text-xs leading-snug line-clamp-3">
-                    {truncateText(video.description || "", 120)}
-                  </p>
+
+                  <div className="flex-1">
+                    <p className="text-gray-400 text-xs leading-snug line-clamp-3">
+                      {truncateText(video.description || "", 120)}
+                    </p>
+                  </div>
+
+                  <div className="mt-3 flex items-center gap-4 text-gray-300 text-xs">
+                    <div className="flex items-center gap-1">
+                      <ChartNoAxesColumn className="w-4 h-4" />
+                      <span>{video.views}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <AiFillLike className="w-4 h-4" />
+                      <span>{video.likes}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <LiaCommentSolid className="w-4 h-4" />
+                      <span>{commentCount}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </a>
-          ))) : (<p className='text-xl text-white'>No Videos Found...</p>)}
+            )
+          })) : (<p className='text-xl text-white'>No Videos Found...</p>)}
         </div>
 
     </div>
