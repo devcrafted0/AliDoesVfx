@@ -2,12 +2,33 @@
 
 import Navbar from '@/components/Navbar/Navbar';
 import { Spotlight } from '@/components/ui/Spotlight';
-import React, { useRef } from 'react'
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import React, { useRef, useState } from 'react'
 
 const page = () => {
 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const router = useRouter(); 
+
   const policyDialog = useRef(null);
   const termsDialog = useRef(null);
+
+  const { user } = useUser();
+
+  if (!user) {
+    return <p>Loading...</p>;
+  }
+
+  const [{ emailAddress }] = user.emailAddresses;
+
+  formData.email = emailAddress; 
 
   const openDialog = () => {
     policyDialog.current.showModal();
@@ -25,6 +46,35 @@ const page = () => {
     termsDialog.current.close();
   };
 
+  const handleChange = (e : any) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    console.log(formData)
+  };
+
+  const handleSubmit = async (e : any) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setFormData({ firstName: "", lastName: "", email: "", message: "" });
+        router.refresh();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <Spotlight/>
@@ -33,7 +83,7 @@ const page = () => {
       </div>
 
     <div className='overflow-hidden'>
-      <form className="rounded-2xl shadow-xl p-8 md:p-12 space-y-6 transform hover:scale-[1.002] transition-transform duration-300">
+      <form onSubmit={handleSubmit} className="rounded-2xl shadow-xl p-8 md:p-12 space-y-6 transform hover:scale-[1.002] transition-transform duration-300">
         <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-200 mb-2">Get In Touch</h2>
             <p className="text-gray-400">We'd love to hear from you. Send us a message!</p>
@@ -48,6 +98,8 @@ const page = () => {
                     id="firstName"
                     name="firstName"
                     required
+                    value={formData.firstName}
+                    onChange={handleChange}
                     className="text-white w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:ring-4 focus:ring-amber-500 focus:ring-opacity-20 outline-none transition-all duration-300 placeholder-gray-400 hover:border-gray-300"
                     placeholder="Ali"
                 />
@@ -60,6 +112,8 @@ const page = () => {
                     type="text" 
                     id="lastName" 
                     name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     required
                     className="text-white focus:ring-amber-500 w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:ring-4 focus:ring-opacity-20 outline-none transition-all duration-300 placeholder-gray-400 hover:border-gray-300"
                     placeholder="Doe"
@@ -75,6 +129,8 @@ const page = () => {
                 type="email" 
                 id="email" 
                 name="email"
+                value={emailAddress}
+                readOnly
                 required
                 className="text-white w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:ring-4 focus:ring-amber-500 focus:ring-opacity-20 outline-none transition-all duration-300 placeholder-gray-400 hover:border-gray-300"
                 placeholder="john.doe@example.com"
@@ -88,6 +144,8 @@ const page = () => {
             <textarea
                 id="message" 
                 name="message"
+                value={formData.message}
+                onChange={handleChange}
                 required
                 rows="6"
                 className="text-white w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:ring-4 focus:ring-amber-500 focus:ring-opacity-20 outline-none transition-all duration-300 placeholder-gray-400 resize-vertical hover:border-gray-300"

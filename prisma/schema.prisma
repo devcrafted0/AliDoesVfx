@@ -43,3 +43,12 @@ model Like {
   video     Video    @relation(fields: [videoId], references: [id])
   @@unique([userId, videoId])
 }
+
+model Contact {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  message     String
+  createdAt   DateTime @default(now())
+}

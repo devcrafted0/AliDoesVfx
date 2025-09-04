@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isVideosRoute = createRouteMatcher(["/videos(.*)", "/api/videos(.*)"]);
+const isVideosRoute = createRouteMatcher(["/videos(.*)", "/api/videos(.*)", "/contact(.*)" , "/api/contact(.*)"]);
 const isDashboardRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 const ADMIN_USER_ID = "user_326Rv6xoB5tjaOgZeIuZzWYSzZf"; 
