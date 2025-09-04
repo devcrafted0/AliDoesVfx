@@ -8,6 +8,7 @@ import BouncingLoader from '@/components/BouncingLoader/BouncingLoader';
 import Navbar from '@/components/Navbar/Navbar';
 import { AiFillLike } from 'react-icons/ai';
 import { LiaCommentSolid } from 'react-icons/lia';
+import DashboardAnalytics from '@/components/DashboardAnalytics';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('all-videos');
@@ -216,6 +217,12 @@ const Dashboard = () => {
     return localDate.toISOString().slice(0, 16); // YYYY-MM-DDTHH:mm
   }
 
+  const totalViews = videos.reduce((sum, video) => sum + video.views, 0);
+  const totalLikes = videos.reduce((sum, video) => sum + video.likes, 0);
+  const totalComments = videos.reduce((sum, video) => {
+    const count = Array.isArray(video.comments) ? video.comments.length : 0;
+    return sum + count;
+  }, 0);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -481,6 +488,9 @@ const Dashboard = () => {
     <>
       <div className='overflow-hidden'>
         <Navbar/>
+      </div>
+      <div>
+        <DashboardAnalytics views={totalViews} likes={totalLikes} comments={totalComments} contact={0}/>
       </div>
       <div className="min-h-screen bg-gray-900 relative mt-3 border-t-2 border-gray-400" style={{ backgroundColor: '#1A1A1A' }}>
         {/* Mobile menu overlay */}
