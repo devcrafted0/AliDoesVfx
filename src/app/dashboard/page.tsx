@@ -1,11 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { Video, Plus, BookOpen, Menu, X,  Users, Delete, DeleteIcon } from 'lucide-react';
+import { Video, Plus, BookOpen, Menu, X,  Users, Delete, DeleteIcon, ChartNoAxesColumn } from 'lucide-react';
 import BodyPortal from '@/components/PortalBody';
 import { MdClose, MdDelete, MdEdit } from 'react-icons/md';
 import BouncingLoader from '@/components/BouncingLoader/BouncingLoader';
 import Navbar from '@/components/Navbar/Navbar';
+import { AiFillLike } from 'react-icons/ai';
+import { LiaCommentSolid } from 'react-icons/lia';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('all-videos');
@@ -235,20 +237,38 @@ const Dashboard = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6">
-              {videosToRender.length > 0 ?(videosToRender.map((video) => (
-                <div key={video.id} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  <div className="relative">
-                    <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
+              {videosToRender.length > 0 ?(videosToRender.map((video) => {
+                const commentCount = video.comments ? video.comments.length : 0;
+                return(
+                  <div key={video.id} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <div className="relative">
+                      <a href={`/videos/${video.id}`}>
+                        <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
+                      </a>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-white">{video.title}</h3>
+                    </div>
+                    <div className="p-4 flex items-center gap-4 text-gray-300 text-xs">
+                      <div className="flex items-center gap-1">
+                        <ChartNoAxesColumn className="w-4 h-4" />
+                        <span>{video.views}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <AiFillLike className="w-4 h-4" />
+                        <span>{video.likes}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <LiaCommentSolid className="w-4 h-4" />
+                        <span>{commentCount}</span>
+                      </div>
+                    </div>
+                    <div className='absolute bottom-2 right-2 flex gap-4'>
+                      <MdEdit onClick={()=>{editVideoHandler(video.id)}} className='hover:text-red-500 cursor-pointer text-lg text-white'/>
+                      <MdDelete onClick={()=>{deleteVideoHandeler(video.id)}} className='hover:text-red-500 cursor-pointer text-lg text-white'/>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-white">{video.title}</h3>
-                  </div>
-                  <div className='absolute bottom-2 right-2 flex gap-4'>
-                    <MdEdit onClick={()=>{editVideoHandler(video.id)}} className='hover:text-red-500 cursor-pointer text-lg text-white'/>
-                    <MdDelete onClick={()=>{deleteVideoHandeler(video.id)}} className='hover:text-red-500 cursor-pointer text-lg text-white'/>
-                  </div>
-                </div>
-              ))):(<p className='text-white text-xl'>No Videos Found...</p>)}
+              )})):(<p className='text-white text-xl'>No Videos Found...</p>)}
 
               <BodyPortal>                  
                 {formOpen && (
