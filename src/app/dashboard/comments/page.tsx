@@ -3,9 +3,18 @@ import BouncingLoader from "@/components/BouncingLoader/BouncingLoader";
 import Navbar from "@/components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 
+export type Comment = {
+  id: number;
+  username: string;
+  comment: string;
+  imageURL: string;
+  createdAt: string | null;
+};
+
+
 const page = () => {
 
-  const [comments , setComments] = useState<[]>([]);
+  const [comments , setComments] = useState<Comment[]>([]);
   const [loading , setLoading] = useState<boolean>(true);
 
   const [visibleCount, setVisibleCount] = useState(6);
@@ -43,7 +52,7 @@ const page = () => {
   }
 
   const sortedComments = [...comments].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    (a, b) => new Date(b.createdAt??"").getTime() - new Date(a.createdAt??"").getTime()
   );
 
   const visibleComments = sortedComments.slice(0, visibleCount);
