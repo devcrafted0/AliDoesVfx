@@ -17,8 +17,8 @@ const page = () => {
 
   const router = useRouter(); 
 
-  const policyDialog = useRef(null);
-  const termsDialog = useRef(null);
+  const policyDialog = useRef<HTMLDialogElement>(null);
+  const termsDialog = useRef<HTMLDialogElement>(null);
 
   const { user } = useUser();
 
@@ -31,19 +31,23 @@ const page = () => {
   formData.email = emailAddress; 
 
   const openDialog = () => {
+    if (policyDialog.current) {
     policyDialog.current.showModal();
+  }
   };
 
   const closeDialog = () => {
-    policyDialog.current.close();
+    policyDialog.current?.close();
   };
 
   const openDialog2 = () => {
+    if (termsDialog.current) {
     termsDialog.current.showModal();
+  }
   };
 
   const closeDialog2 = () => {
-    termsDialog.current.close();
+    termsDialog.current?.close();
   };
 
   const handleChange = (e : any) => {
