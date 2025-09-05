@@ -48,7 +48,6 @@ export async function GET( req, { params }) {
     );
   }
 }
-
 //Deleting a specific Video
 export async function DELETE(req,  { params }) {
   try {
@@ -67,14 +66,13 @@ export async function DELETE(req,  { params }) {
       { message: "Video deleted successfully", video: deletedVideo },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete video", details: error.message },
       { status: 500 }
     );
   }
 }
-
 // Updating a Specific Video
 export async function PATCH(req, { params }) {
   try {
@@ -121,7 +119,6 @@ export async function PATCH(req, { params }) {
     );
   }
 }
-
 // Adding A View To The Specific Video
 export async function POST( req, context) {
   try {
