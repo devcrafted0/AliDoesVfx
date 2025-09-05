@@ -1,7 +1,7 @@
 "use client"
 
+import BouncingLoader from "@/components/BouncingLoader/BouncingLoader";
 import Navbar from "@/components/Navbar/Navbar";
-import { error } from "console";
 import { Calendar } from "lucide-react";
 import { use, useEffect, useState } from "react"
 
@@ -50,14 +50,20 @@ const Page = ({params} : {params : Promise<Params>}) => {
         if (!res.ok) throw new Error("Failed to fetch video");
         const data = await res.json();
         setContact(data.contact);
-      } catch (err: any) {
-        console.log(err);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.log(err.message);
+        } else {
+          console.log("An unknown error occurred");
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchContact();
-  }, []);
+  }, [id]);
+
+  if (loading) return <BouncingLoader/>
 
   return (
     <div>
