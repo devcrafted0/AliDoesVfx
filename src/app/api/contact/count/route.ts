@@ -6,6 +6,6 @@ export async function GET() {
     const count = await prisma.contact.count(); 
     return NextResponse.json({ count });
   } catch (error) {
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return NextResponse.json(error, { status: 500 });
   }
 }

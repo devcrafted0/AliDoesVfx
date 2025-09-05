@@ -6,6 +6,7 @@ import ShinyText from '@/components/ShinyText/ShinyText';
 import { CardCarousel } from '@/components/ui/card-carousel';
 import AOSWrapper from "@/components/AOSWrapper";
 import { WordRotate } from '@/components/magicui/word-rotate';
+import Link from 'next/link';
 
 const page = () => {
 
@@ -64,7 +65,7 @@ const page = () => {
         <ShinyText className='max-w-[80ch] text-[clamp(0.7rem,1vw,1.125rem)] text-gray-100/60' text='If you’re serious about mastering VFX and want to learn from someone who’s been on the front lines of blockbuster filmmaking, I invite you to explore my courses and portfolio. Let’s unlock your potential and turn your passion for VFX into a professional reality.'/>
 
         <div className='w-screen flex items-center [@media(max-width:520px)]:justify-center mt-5'>
-          <a
+          <Link
           href="/videos"
           className="
             inline-flex justify-center items-center relative h-[50px] px-[30px] border-2 border-[#FFB400] bg-[#1A1A1A]
@@ -84,7 +85,7 @@ const page = () => {
           <span className="relative z-[3] font-semibold text-[15px] text-[#FFB400]">
             GAME ON
           </span>
-        </a>
+        </Link>
       </div>
       </div>
 
