@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+type Comment = {
+  username: string;
+  userId: string;
+  comment: string;
+  createdAt: string;
+  imageURL?: string;
+};
+
+
 // Add New Comments
 export async function POST(
   req: NextRequest,
@@ -34,7 +43,7 @@ export async function POST(
       return NextResponse.json({ error: "Video not found" }, { status: 404 });
     }
 
-    const existingComments = (video.comments as any[]) || [];
+    const existingComments = (video.comments as Comment[]) || [];
 
     const newComment = {
       username,
