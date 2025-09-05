@@ -50,7 +50,7 @@ export async function GET( req, { params }) {
 }
 
 //Deleting a specific Video
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req,  { params }) {
   try {
     const videoId = parseInt(params.id, 10);
 
@@ -76,7 +76,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
 }
 
 // Updating a Specific Video
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req, { params }) {
   try {
     const id = parseInt(params.id);
     const body = await req.json();
@@ -105,7 +105,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     });
 
     return NextResponse.json(updatedVideo, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('PUT Error:', error);
     
     if (error.code === 'P2025') {
@@ -123,10 +123,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 // Adding A View To The Specific Video
-export async function POST(
-  req: NextRequest,
-  context: { params: Promise<{ id: string }> }
-) {
+export async function POST( req, context) {
   try {
     const { id } = await context.params;
     const user = await currentUser();
