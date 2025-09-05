@@ -41,7 +41,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
   useEffect(() => {
     if (!videoId) return;
 
-    const loadYouTubeAPI = () => {
+    const loadYouTubeAPI = (): Promise<typeof YT> => {
       return new Promise((resolve) => {
         if (window.YT && window.YT.Player) {
           resolve(window.YT);
@@ -64,7 +64,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
         playerRef.current.destroy();
       }
 
-      playerRef.current = new YT.Player(iframeRef.current, {
+      playerRef.current = new YT.Player(iframeRef.current!, {
         videoId: videoId,
         playerVars: {
           controls: 0,
