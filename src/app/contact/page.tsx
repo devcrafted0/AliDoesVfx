@@ -90,7 +90,7 @@ const Page = () => {
       <form onSubmit={handleSubmit} className="rounded-2xl shadow-xl p-8 md:p-12 space-y-6 transform hover:scale-[1.002] transition-transform duration-300">
         <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-200 mb-2">Get In Touch</h2>
-            <p className="text-gray-400">We'd love to hear from you. Send us a message!</p>
+            <p className="text-gray-400">We&apos;d love to hear from you. Send us a message!</p>
             <div className="w-24 h-1 bg-gradient-to-r from-accent to-yellow-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
