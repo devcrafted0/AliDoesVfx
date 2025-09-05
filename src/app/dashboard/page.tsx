@@ -299,7 +299,7 @@ const Dashboard = () => {
                               type="text"
                               placeholder="Enter video title..."
                               className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                              style={{ '--tw-ring-color': '#FFB400' }}
+                              style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                               required
                               name='title'
                               value={editData.title}
@@ -310,10 +310,10 @@ const Dashboard = () => {
                           <div>
                             <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
                             <textarea
-                              rows="4"
+                              rows={4}
                               placeholder="Enter video description..."
                               className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent resize-vertical"
-                              style={{ '--tw-ring-color': '#FFB400' }}
+                              style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                               value={editData.description}
                               name='description'
                               onChange={handleEditChange}
@@ -326,7 +326,7 @@ const Dashboard = () => {
                               type="url"
                               placeholder="Enter Youtube Video URL"
                               className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                              style={{ '--tw-ring-color': '#FFB400' }}
+                              style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                               value={editData.youtubeUrl}
                               name='youtubeUrl'
                               onChange={handleEditChange}
@@ -339,7 +339,7 @@ const Dashboard = () => {
                               type="text"
                               placeholder="Enter Youtube Video Thumbnail Url"
                               className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                              style={{ '--tw-ring-color': '#FFB400' }}
+                              style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                               value={editData.thumbnail}
                               name='thumbnail'
                               onChange={handleEditChange}
@@ -352,7 +352,7 @@ const Dashboard = () => {
                               type="datetime-local"
                               placeholder="Enter Youtube Video Thumbnail Url"
                               className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                              style={{ '--tw-ring-color': '#FFB400' }}
+                              style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                               name='publishedAt'
                               value={formatDateForInput(editData.publishedAt)}
                               onChange={handleEditChange}
