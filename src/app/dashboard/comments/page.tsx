@@ -12,7 +12,7 @@ export type Comment = {
 };
 
 
-const page = () => {
+const Page = () => {
 
   const [comments , setComments] = useState<Comment[]>([]);
   const [loading , setLoading] = useState<boolean>(true);
@@ -121,4 +121,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;

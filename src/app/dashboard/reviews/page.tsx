@@ -13,7 +13,7 @@ type Contact = {
   createdAt: string;
 };
 
-const page = () => {
+const Page = () => {
 
   const [reviews , setReviews] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
@@ -98,4 +98,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

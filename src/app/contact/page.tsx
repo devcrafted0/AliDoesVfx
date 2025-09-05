@@ -6,7 +6,7 @@ import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState } from 'react'
 
-const page = () => {
+const Page = () => {
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -217,4 +217,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;

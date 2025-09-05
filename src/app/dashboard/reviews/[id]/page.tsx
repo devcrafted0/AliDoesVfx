@@ -16,7 +16,7 @@ type Contact = {
   createdAt: string;
 };
 
-const page = ({params} : {params : Promise<Params>}) => {
+const Page = ({params} : {params : Promise<Params>}) => {
   const param = use(params);
   const id = param.id;
 
@@ -88,4 +88,4 @@ const page = ({params} : {params : Promise<Params>}) => {
   )
 }
 
-export default page;
+export default Page;

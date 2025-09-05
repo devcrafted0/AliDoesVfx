@@ -7,7 +7,7 @@ import { ChartNoAxesColumn } from 'lucide-react';
 import { AiFillLike } from 'react-icons/ai';
 import { LiaCommentSolid } from "react-icons/lia";
 
-const page = () => {
+const Page = () => {
 
   const [videos, setVideos] = useState<any[]>([]);
   const [query , setQuery] = useState('');
@@ -105,4 +105,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;
