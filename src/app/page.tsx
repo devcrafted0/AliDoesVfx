@@ -8,6 +8,7 @@ import ShinyText from '@/components/ShinyText/ShinyText';
 import { CardHero } from '@/components/magicui/CardHero';
 import FirstLogin from '@/components/FirstLogin';
 
+import { SignUpButton } from '@clerk/nextjs'
 
 const page = () => {
 
@@ -28,6 +29,8 @@ const page = () => {
             <ShinyText className="max-w-[50ch] text-[clamp(0.90rem,1vw,1.125rem)] text-gray-100/60" text="Master the visual effects that bring impossible worlds to life — and launch the career you've always dreamed of. From explosive action sequences to breathtaking fantasy realms, learn the same industry techniques used by top VFX studios." disabled={false} speed={3}/>
 
               {/* Get Started Button */}
+            
+            <SignUpButton>
             <span className='[@media(max-width:900px)]:justify-center w-full flex items-center drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]'>
               <button className="glass-effect button-orange my-5 [@media(max-width:900px)]:scale-[0.9]">
                   Get Started
@@ -40,9 +43,10 @@ const page = () => {
                   </svg>
               </button>
             </span>
+            </SignUpButton>
 
             <div className='w-full flex [@media(max-width:900px)]:justify-center mt-10'>
-              <CardHero img="/dragon.png" title="Ali Raza" slug="@alidoesvfx" description="Master the visual effects that bring impossible worlds to life — and launch the career you've always dreamed of. From explosive action sequences to breathtaking fantasy realms, learn the same industry techniques used by top VFX studios."/>
+              <CardHero learnMoreRoute="/about" img="/dragon.png" title="Ali Raza" slug="@alidoesvfx" description="Master the visual effects that bring impossible worlds to life — and launch the career you've always dreamed of. From explosive action sequences to breathtaking fantasy realms, learn the same industry techniques used by top VFX studios."/>
             </div>
 
         </div>

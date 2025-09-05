@@ -7,10 +7,11 @@ type PropsCardHero = {
   img : string;
   title : string;
   slug : string;
-  description : string
+  description : string;
+  learnMoreRoute : string
 }
 
-export function CardHero({img , title , slug , description} : PropsCardHero) {
+export function CardHero({img , title , slug , description, learnMoreRoute} : PropsCardHero) {
   const { theme } = useTheme();
   return (
     <div className="p-0 max-w-sm w-full shadow-none border-none rounded-3xl">
@@ -29,7 +30,9 @@ export function CardHero({img , title , slug , description} : PropsCardHero) {
                 </div>
             </div>
             <div>
+              <a href={learnMoreRoute}>
                 <button className="px-[clamp(0.50rem,2vw,1rem)] py-[clamp(0.5rem,1.5vw,0.75rem)] text-[clamp(0.875rem,1vw,1rem)] rounded-full cursor-pointer glass glass-effect overflow-hidden text-white font-bold">Learn More</button>
+              </a>
             </div>
         </div>
 
