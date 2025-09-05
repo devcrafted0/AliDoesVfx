@@ -1,6 +1,7 @@
 "use client"
 import BouncingLoader from "@/components/BouncingLoader/BouncingLoader";
 import Navbar from "@/components/Navbar/Navbar";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export type Comment = {
@@ -29,6 +30,7 @@ const Page = () => {
         const data = await res.json();
         setComments(data.comments);        
       } catch (err) {
+        console.log(err);
       } finally {
         setLoading(false);
       }
@@ -78,7 +80,7 @@ const Page = () => {
               <div key={idx} className="p-2 border rounded-lg hover:bg-white/10 cursor-pointer transition-all duration-75 ">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-8 h-8">
-                    <img
+                    <Image
                       src={c.imageURL}
                       alt={c.comment}
                       className="rounded-full"
