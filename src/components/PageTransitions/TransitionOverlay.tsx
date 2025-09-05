@@ -14,7 +14,7 @@ export default function TransitionOverlay() {
   const shouldShowTransition = (currentPath: string, prevPath: string) => {
     // Split paths into segments
     const currentSegments = currentPath.split('/').filter(Boolean);
-    
+    prevPath;
     // Show transition when navigating TO:
     // 1. Root route (/) - from any route
     // 2. Single nested routes (/about, /videos, etc.) - from any route

@@ -13,12 +13,10 @@ import BodyPortal from "../PortalBody";
 
 import {
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
   useUser,
-  UserProfile
 } from '@clerk/nextjs'
 
 const ADMIN_USER_ID = "user_326Rv6xoB5tjaOgZeIuZzWYSzZf";
@@ -27,7 +25,7 @@ const Navbar = () => {
 
     const [isOpen , setIsOpen] = useState<boolean>(false);
 
-    const { isLoaded, user , isSignedIn } = useUser();
+    const { isLoaded, user} = useUser();
 
      if (!isLoaded) {
         return null;

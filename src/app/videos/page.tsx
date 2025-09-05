@@ -6,12 +6,27 @@ import BouncingLoader from '@/components/BouncingLoader/BouncingLoader';
 import { ChartNoAxesColumn } from 'lucide-react';
 import { AiFillLike } from 'react-icons/ai';
 import { LiaCommentSolid } from "react-icons/lia";
+import Image from 'next/image';
+
+type Video = {
+  id: number;
+  title: string;
+  youtubeUrl: string;
+  description?: string | null;
+  thumbnail: string;
+  publishedAt: Date;
+  createdAt: Date;
+  views : number;
+  likes : number;
+  initialLiked : boolean;
+  comments : [];
+};
 
 const Page = () => {
 
-  const [videos, setVideos] = useState<any[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
   const [query , setQuery] = useState('');
-  const [filteredVideos, setFilteredVideos] = useState<any[]>([]);
+  const [filteredVideos, setFilteredVideos] = useState<Video[]>([]);
 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true)
@@ -37,10 +52,11 @@ const Page = () => {
       setFilteredVideos(videos.filter((video) =>
       video.title.toLowerCase().includes(query.toLowerCase())
     ))
-  },[query])
+  },[query , videos])
   
   const videosToRender = query ? filteredVideos : videos;
 
+  if(error) return <p>Error : {error}</p>
   if (loading) return <BouncingLoader/>;
 
   return (
@@ -62,7 +78,7 @@ const Page = () => {
                 className="flex flex-col h-full rounded-xl border border-white/20 bg-white/5 shadow-md overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-transform duration-200 cursor-pointer"
                 >
                 <div className="w-full aspect-video overflow-hidden bg-black flex justify-center items-center">
-                  <img
+                  <Image
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover"

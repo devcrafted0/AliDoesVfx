@@ -46,6 +46,7 @@ export default function VideoDetails({ params }: { params: Promise<Params> }) {
         setVideo(data);
       } catch (err: unknown) {
           if (err instanceof Error) {
+            setError(err.message);
             console.log(err.message);
           } else {
             console.log("An unknown error occurred");
