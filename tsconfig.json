@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/SplitText.jsx", "src/components/Lenis.jsx", "src/components/Comments.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/SplitText.jsx", "src/components/Lenis.jsx", "src/components/Comments.jsx", "src/app/api/contact/[id]/route.js"],
   "exclude": ["node_modules"]
 }
