@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, Minimize, SkipBack, SkipForward, Settings } from 'lucide-react';
 import { MdOutlineForward10, MdOutlineReplay10 } from "react-icons/md";
 
+declare global {
+  interface Window {
+    YT: typeof YT; // this comes from @types/youtube
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
 const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -15,13 +22,13 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
-  const playerRef = useRef(null);
-  const containerRef = useRef(null);
-  const controlsTimeoutRef = useRef(null);
+  const playerRef = useRef<YT.Player | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const iframeRef = useRef(null);
 
   // Extract video ID
-  const getVideoId = (url) => {
+  const getVideoId = (url : string) => {
     const match = url.match(
       /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/
     );
@@ -44,7 +51,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
 
         window.onYouTubeIframeAPIReady = () => {
           resolve(window.YT);
@@ -118,7 +125,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
   }, []);
 
   // Format time as mm:ss
-  const formatTime = (seconds) => {
+  const formatTime = (seconds:number|null|undefined):string => {
     if (!seconds) return '0:00';
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
@@ -154,7 +161,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
     }
   };
 
-  const handleVolumeChange = (e) => {
+  const handleVolumeChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     const newVol = parseInt(e.target.value);
     setVolume(newVol);
     if (playerRef.current && typeof playerRef.current.setVolume === 'function') {
@@ -167,7 +174,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
     }
   };
 
-  const handleSeek = (e) => {
+  const handleSeek = (e : React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!playerRef.current || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const percent = (e.clientX - rect.left) / rect.width;
@@ -181,7 +188,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
     }
   };
 
-  const handleSkip = (seconds) => {
+  const handleSkip = (seconds:number) => {
     if (!playerRef.current) return;
     const newTime = Math.max(0, Math.min(currentTime + seconds, duration));
     try {
@@ -192,7 +199,7 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
     }
   };
 
-  const handlePlaybackRate = (rate) => {
+  const handlePlaybackRate = (rate:number) => {
     setPlaybackRate(rate);
     if (playerRef.current && typeof playerRef.current.setPlaybackRate === 'function') {
       try {
@@ -219,7 +226,9 @@ const CustomYouTubePlayer = ({ url = "https://www.youtube.com/watch?v=dQw4w9WgXc
 
   const handleMouseMove = () => {
     setShowControls(true);
-    clearTimeout(controlsTimeoutRef.current);
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
     controlsTimeoutRef.current = setTimeout(() => {
       if (isPlaying) setShowControls(false);
     }, 3000);
