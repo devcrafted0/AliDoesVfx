@@ -2,6 +2,7 @@
 import { MagicCard } from "@/components/magicui/magic-card";
 import { useTheme } from "next-themes";
 import ShinyText from '@/components/ShinyText/ShinyText';
+import Image from "next/image";
 
 type PropsCardHero = {
   img : string;
@@ -21,7 +22,7 @@ export function CardHero({img , title , slug , description, learnMoreRoute} : Pr
         <div className="px-4 pt-4 text-white justify-between items-center flex gap-4">
             <div className="flex gap-4">
                 <div className="w-10 h-10 rounded-full border-2 border-gray-400 overflow-hidden">
-                    <img src={img} alt="userImage" width={100} height={100} />
+                    <Image src={img} alt="userImage" width={100} height={100} />
                 </div>
 
                 <div>

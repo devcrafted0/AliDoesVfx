@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { useUser } from '@clerk/nextjs'
-import { div } from 'motion/react-client';
 
 const FirstLogin = () => {
     const { isLoaded, user } = useUser();

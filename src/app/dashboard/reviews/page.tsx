@@ -41,9 +41,7 @@ const Page = () => {
         setLoading(false);
         }
     };
-
     fetchContacts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
   function formatDateTime(isoString: string): string {

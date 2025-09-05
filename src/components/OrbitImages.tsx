@@ -1,5 +1,4 @@
 import { OrbitingCircles } from "@/components/magicui/orbiting-circles";
-import { image } from "motion/react-client";
 import Image from "next/image";
 
 export function OrbitImages() {

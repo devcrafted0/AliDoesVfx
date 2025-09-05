@@ -1,6 +1,5 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import Meteors from "../magicui/meteors";
@@ -15,7 +14,6 @@ export default function TransitionOverlay() {
   const shouldShowTransition = (currentPath: string, prevPath: string) => {
     // Split paths into segments
     const currentSegments = currentPath.split('/').filter(Boolean);
-    const prevSegments = prevPath.split('/').filter(Boolean);
     
     // Show transition when navigating TO:
     // 1. Root route (/) - from any route
@@ -41,7 +39,7 @@ export default function TransitionOverlay() {
       // Just update the previous path without showing overlay
       setPreviousPath(pathname);
     }
-  }, [pathname]);
+  }, [pathname,previousPath]);
 
   useEffect(() => {
     if (videoRef.current && displayOverlay) {

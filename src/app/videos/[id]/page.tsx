@@ -10,13 +10,14 @@ import DynamicLikeButton from "@/components/DynamicLikeButton";
 import Comments from "@/components/Comments";
 import { use } from "react"
 import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 type Video = {
   id: number;
   title: string;
   youtubeUrl: string;
   description?: string | null;
-  thumbnail?: string;
+  thumbnail: string;
   publishedAt: Date;
   createdAt: Date;
   views : number;
@@ -43,8 +44,12 @@ export default function VideoDetails({ params }: { params: Promise<Params> }) {
 
         const data = await res.json();
         setVideo(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+          if (err instanceof Error) {
+            console.log(err.message);
+          } else {
+            console.log("An unknown error occurred");
+          }
       } finally {
         setLoading(false);
       }
@@ -61,6 +66,7 @@ export default function VideoDetails({ params }: { params: Promise<Params> }) {
   if (loading) return <BouncingLoader/>;
   if (!video) return <NotFound href="/videos" pageName="Videos"/>
   if(!user) return null;
+  if(error) return <p>Error : {error}</p>;
 
   return (
     <div className="relative overflow-hidden">
@@ -68,7 +74,7 @@ export default function VideoDetails({ params }: { params: Promise<Params> }) {
         <Navbar/>
       </div>
       <div className="relative w-screen h-100 bg-white flex justify-center items-center overflow-hidden [@media(max-width:680px)]:h-60">
-        <img src={video.thumbnail} alt={video.title} className="min-w-full min-h-[150%] object-cover [clip-path:inset(50px_0px_50px_0px)]" />
+        <Image src={video.thumbnail} alt={video.title} className="min-w-full min-h-[150%] object-cover [clip-path:inset(50px_0px_50px_0px)]" />
         <div className="absolute top-0 left-0 bg-black/50 w-full h-full flex justify-center items-center">
           <h1 className="font-bold text-main [text-shadow:3px_3px_10px_rgba(0,0,0,0.8)] text-[clamp(0.8rem,2vw,2.5rem)]">{video.title}</h1>
         </div>
