@@ -15,10 +15,12 @@ const DashboardAnalytics = ({views , likes , comments , contact}:{views:number ;
                 <h1 >Total Comments</h1>
             </div>
         </a>
-        <div className="bg-amber-400 h-50 rounded-xl flex justify-center items-center flex-col cursor-pointer">
-            <p className="text-3xl font-bold">{contact}</p>
-            <h1 >Contact Support</h1>
-        </div>
+        <a href="/dashboard/reviews">
+            <div className="bg-amber-400 h-50 rounded-xl flex justify-center items-center flex-col cursor-pointer">
+                <p className="text-3xl font-bold">{contact}</p>
+                <h1 >Contact Support</h1>
+            </div>
+        </a>
     </div>
   )
 }

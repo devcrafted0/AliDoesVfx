@@ -22,3 +22,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Failed to save contact." }, { status: 500 });
   }
 }
+
+export async function GET() {
+  try {
+    const contacts = await prisma.contact.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return NextResponse.json(contacts, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching contacts:", error);
+    return NextResponse.json({ error: "Failed to fetch contacts" }, { status: 500 });
+  }
+}

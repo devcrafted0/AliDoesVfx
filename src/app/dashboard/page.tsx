@@ -29,6 +29,7 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [countContact, setCountContact] = useState<number>(0);
 
   const [query , setQuery] = useState<string>('');
 
@@ -223,6 +224,12 @@ const Dashboard = () => {
     const count = Array.isArray(video.comments) ? video.comments.length : 0;
     return sum + count;
   }, 0);
+
+  useEffect(() => {
+    fetch("/api/contact/count")
+      .then((res) => res.json())
+      .then((data) => setCountContact(data.count));
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -490,7 +497,7 @@ const Dashboard = () => {
         <Navbar/>
       </div>
       <div>
-        <DashboardAnalytics views={totalViews} likes={totalLikes} comments={totalComments} contact={0}/>
+        <DashboardAnalytics views={totalViews} likes={totalLikes} comments={totalComments} contact={countContact}/>
       </div>
       <div className="min-h-screen bg-gray-900 relative mt-3 border-t-2 border-gray-400" style={{ backgroundColor: '#1A1A1A' }}>
         {/* Mobile menu overlay */}

@@ -8,6 +8,7 @@ import CustomYouTubePlayer from "@/components/MediaPlayer/CustomMediaPlayer";
 import { ChartNoAxesColumn } from "lucide-react";
 import DynamicLikeButton from "@/components/DynamicLikeButton";
 import Comments from "@/components/Comments";
+import { use } from "react"
 import { useUser } from "@clerk/nextjs";
 
 type Video = {
@@ -24,9 +25,11 @@ type Video = {
   comments : [];
 };
 
+type Params = {id : string};
 
-export default function VideoDetails({ params }: { params: {id : string} }) {
-  const id = Number(params.id);
+export default function VideoDetails({ params }: { params: Promise<Params> }) {
+  const param = use(params);
+  const id = Number(param.id);
   const [video, setVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
