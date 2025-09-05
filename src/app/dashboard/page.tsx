@@ -54,7 +54,7 @@ const Dashboard = () => {
       setFilteredVideos(videos.filter((video) =>
       video.title.toLowerCase().includes(query.toLowerCase())
     ))
-  },[query])
+  },[query, videos])
 
   const videosToRender = query ? filteredVideos : videos;
 
