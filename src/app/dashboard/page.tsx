@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { Video, Plus, BookOpen, Menu, X,  Users, Delete, DeleteIcon, ChartNoAxesColumn } from 'lucide-react';
+import { Video, Plus, BookOpen, Menu, X, ChartNoAxesColumn } from 'lucide-react';
 import BodyPortal from '@/components/PortalBody';
 import { MdClose, MdDelete, MdEdit } from 'react-icons/md';
 import BouncingLoader from '@/components/BouncingLoader/BouncingLoader';
@@ -9,13 +9,28 @@ import Navbar from '@/components/Navbar/Navbar';
 import { AiFillLike } from 'react-icons/ai';
 import { LiaCommentSolid } from 'react-icons/lia';
 import DashboardAnalytics from '@/components/DashboardAnalytics';
+import Image from 'next/image';
+
+type Video = {
+  id: number;
+  title: string;
+  youtubeUrl: string;
+  description?: string | null;
+  thumbnail: string;
+  publishedAt: Date;
+  createdAt: Date;
+  views : number;
+  likes : number;
+  initialLiked : boolean;
+  comments : [];
+};
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('all-videos');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [formOpen , setFormOpen] = useState<boolean>(false);
   const [deleteOpen , setDeleteOpen] = useState<boolean>(false);
-  const [videos, setVideos] = useState<any[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   const [selectedId , setSelectedId] = useState<number | null>(null);
 
@@ -28,12 +43,11 @@ const Dashboard = () => {
     publishedAt: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [countContact, setCountContact] = useState<number>(0);
 
   const [query , setQuery] = useState<string>('');
 
-  const [filteredVideos, setFilteredVideos] = useState<any[]>([]);
+  const [filteredVideos, setFilteredVideos] = useState<Video[]>([]);
 
   // Handle Query And Update the videos
   useEffect(()=>{
@@ -139,13 +153,6 @@ const Dashboard = () => {
       .then((data) => setVideos(data));
   }, []);
 
-  const courses = [
-    { id: 1, title: 'Complete Web Development Bootcamp', lessons: 45, students: 12500, progress: 85, thumbnail: 'https://via.placeholder.com/300x200/3B82F6/white?text=Web+Dev' },
-    { id: 2, title: 'React Native Mobile Development', lessons: 32, students: 8900, progress: 60, thumbnail: 'https://via.placeholder.com/300x200/10B981/white?text=React+Native' },
-    { id: 3, title: 'Python for Data Science', lessons: 28, students: 15600, progress: 40, thumbnail: 'https://via.placeholder.com/300x200/F59E0B/white?text=Python' },
-    { id: 4, title: 'Machine Learning Fundamentals', lessons: 36, students: 6700, progress: 25, thumbnail: 'https://via.placeholder.com/300x200/EF4444/white?text=ML' }
-  ];
-
   const tabs = [
     { id: 'all-videos', label: 'All Videos', icon: Video },
     { id: 'add-videos', label: 'Add Videos', icon: Plus },
@@ -169,7 +176,6 @@ const Dashboard = () => {
   
   async function fetchVideo() {
     setLoading(true);
-    setError(null);
     
     try {
       console.log('Fetching video with ID:', editId);
@@ -186,7 +192,6 @@ const Dashboard = () => {
       
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-      setError(errorMessage);
       console.error('Error fetching video:', errorMessage);
     } finally {
       setLoading(false);
@@ -256,7 +261,7 @@ const Dashboard = () => {
                   <div key={video.id} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <div className="relative">
                       <a href={`/videos/${video.id}`}>
-                        <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
+                        <Image src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
                       </a>
                     </div>
                     <div className="p-4">
