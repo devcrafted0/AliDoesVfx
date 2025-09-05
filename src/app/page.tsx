@@ -53,7 +53,6 @@ const page = () => {
       </div>
 
 
-      <div >Under Content</div>
     </ClickSpark>
   )
 }
