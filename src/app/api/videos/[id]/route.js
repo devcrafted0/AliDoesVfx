@@ -3,10 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 
 // Getting A Specific Video
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET( req, { params }) {
   try {
     const id = Number(params.id);
 
