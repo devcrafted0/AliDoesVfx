@@ -50,7 +50,7 @@ const Page = () => {
     termsDialog.current?.close();
   };
 
-  const handleChange = (e : any) => {
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -59,7 +59,7 @@ const Page = () => {
     console.log(formData)
   };
 
-  const handleSubmit = async (e : any) => {
+  const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await fetch("/api/contact", {
