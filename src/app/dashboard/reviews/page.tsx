@@ -1,7 +1,6 @@
 "use client"
 import BouncingLoader from "@/components/BouncingLoader/BouncingLoader";
 import Navbar from "@/components/Navbar/Navbar"
-import { div } from "framer-motion/client";
 import { useEffect, useState } from "react"
 
 type Contact = {
@@ -15,26 +14,37 @@ type Contact = {
 
 const Page = () => {
 
-  const [reviews , setReviews] = useState<Contact[]>([]);
+  const [reviews, setReviews] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    try {
-        const fetchContacts = async () => {
-            const res = await fetch("/api/contact");
-            if (res.ok) {
-                const data = await res.json();
-                setReviews(data);
-             }
-        };
-        fetchContacts();
-        console.log(reviews);
-    } catch (error) {
-        console.log(error)
-    } finally{
+    const fetchContacts = async () => {
+        try {
+        const res = await fetch("/api/contact");
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch contacts");
+        }
+
+        const data: Contact[] = await res.json();
+        setReviews(data);
+        } catch (err: unknown) {
+        if (err instanceof Error) {
+            setError(err.message);
+            console.error(err.message);
+        } else {
+            setError("An unknown error occurred");
+            console.error("Unknown error occurred");
+        }
+        } finally {
         setLoading(false);
-    }
-  }, []);
+        }
+    };
+
+    fetchContacts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   function formatDateTime(isoString: string): string {
     const date = new Date(isoString);
@@ -53,6 +63,8 @@ const Page = () => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + "...";
   }
+
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
