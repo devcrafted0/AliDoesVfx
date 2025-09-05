@@ -77,31 +77,33 @@ export async function POST(req: Request) {
     console.log('Video created successfully:', newVideo.id);
     return NextResponse.json(newVideo, { status: 201 });
 
-  } catch (error: any) {
-    console.error('Detailed error:', {
-      message: error.message,
-      code: error.code,
-      meta: error.meta,
-      stack: error.stack
-    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Detailed error:", {
+        message: error.message,
+        stack: error.stack,
+      });
+    } else {
+      console.error("Unexpected error:", error);
+    }
 
     // Handle Prisma-specific errors
-    if (error.code === 'P2002') {
+    const prismaError = error as { code?: string; message?: string; meta?: unknown };
+    if (prismaError.code === "P2002") {
       return NextResponse.json(
         { error: "A video with this data already exists (unique constraint violation)" },
         { status: 409 }
       );
     }
 
-    if (error.code === 'P2025') {
+    if (prismaError.code === "P2025") {
       return NextResponse.json(
         { error: "Record not found or foreign key constraint failed" },
         { status: 404 }
       );
     }
 
-    // Database connection errors
-    if (error.code === 'P1001') {
+    if (prismaError.code === "P1001") {
       return NextResponse.json(
         { error: "Cannot connect to database" },
         { status: 503 }
@@ -109,10 +111,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(
-      { 
-        error: "Failed to create video", 
-        details: error.message,
-        code: error.code || 'UNKNOWN'
+      {
+        error: "Failed to create video",
+        details: prismaError.message || "Unknown error",
+        code: prismaError.code || "UNKNOWN",
       },
       { status: 500 }
     );
