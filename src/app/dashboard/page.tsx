@@ -242,8 +242,7 @@ const Dashboard = () => {
                 <input 
                   type="search" 
                   placeholder="Search videos..." 
-                  className="px-5 py-2 bg-gray-800 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent w-full sm:w-64"
-                  style={{ focusRingColor: '#FFB400' }}
+                  className="px-5 py-2 bg-gray-800 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent focus:ring-[#FFB400] w-full sm:w-64"
                   value={query}
                   onChange={(e)=>{setQuery(e.target.value)}}
                 />
@@ -409,7 +408,7 @@ const Dashboard = () => {
                           onChange={handleChange}
                           placeholder="Enter video title..."
                           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                          style={{ '--tw-ring-color': '#FFB400' }}
+                          style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                           required
                         />
                       </div>
@@ -420,10 +419,10 @@ const Dashboard = () => {
                           name='description'
                           value={form.description}
                           onChange={handleChange}
-                          rows="4"
+                          rows={4}
                           placeholder="Enter video description..."
                           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent resize-vertical"
-                          style={{ '--tw-ring-color': '#FFB400' }}
+                          style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                         />
                       </div>
                       
@@ -436,7 +435,7 @@ const Dashboard = () => {
                           onChange={handleChange}
                           placeholder="Enter Youtube Video URL"
                           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                          style={{ '--tw-ring-color': '#FFB400' }}
+                          style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                         />
                       </div>
 
@@ -449,7 +448,7 @@ const Dashboard = () => {
                           onChange={handleChange}
                           placeholder="Enter Youtube Video Thumbnail Url"
                           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                          style={{ '--tw-ring-color': '#FFB400' }}
+                          style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                         />
                       </div>
 
@@ -462,7 +461,7 @@ const Dashboard = () => {
                           onChange={handleChange}
                           placeholder="Enter Youtube Video Thumbnail Url"
                           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:ring-2 focus:border-transparent"
-                          style={{ '--tw-ring-color': '#FFB400' }}
+                          style={{ '--tw-ring-color': '#FFB400' }  as React.CSSProperties}
                         />
                       </div>
 
