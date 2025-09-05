@@ -11,10 +11,9 @@ export default function TransitionOverlay() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Function to check if we should show transition
-  const shouldShowTransition = (currentPath: string, prevPath: string) => {
+  const shouldShowTransition = (currentPath: string) => {
     // Split paths into segments
     const currentSegments = currentPath.split('/').filter(Boolean);
-    prevPath;
     // Show transition when navigating TO:
     // 1. Root route (/) - from any route
     // 2. Single nested routes (/about, /videos, etc.) - from any route
@@ -27,7 +26,7 @@ export default function TransitionOverlay() {
 
   useEffect(() => {
     // Check if we should show the transition
-    if (shouldShowTransition(pathname, previousPath)) {
+    if (shouldShowTransition(pathname)) {
       setDisplayOverlay(true);
       const timer = setTimeout(() => setDisplayOverlay(false), 2000);
       

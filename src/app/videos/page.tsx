@@ -36,10 +36,11 @@ const Page = () => {
       fetch("/api/videos")
       .then((res) => res.json())
       .then((data) => setVideos(data));
-    } catch(err: any){
-      setError(err.message);
+    } catch(err: unknown){
+        if (err instanceof Error) setError(err.message);
+        else setError("Unknown error occurred");
     } finally{
-      setLoading(false);
+        setLoading(false);
     }
   }, []);
 

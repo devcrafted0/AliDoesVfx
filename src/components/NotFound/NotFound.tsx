@@ -8,7 +8,7 @@ const NotFound = ({href, pageName}:{href:string;pageName:string}) => {
             Not found : )
         </h1>
         <p className="mt-3 text-gray-500 [font-size:clamp(0.9rem,2vw,1.125rem)] max-w-md">
-            Looks like the page you're looking for doesn&apos;t exist or has been removed.
+            Looks like the page you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
         
         <a href={href}>
