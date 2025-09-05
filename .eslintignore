@@ -7,4 +7,5 @@ node_modules
 
 # Ignore Prisma generated client
 prisma/generated
+src/generated
 node_modules/@prisma/client
