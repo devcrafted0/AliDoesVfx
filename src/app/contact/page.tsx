@@ -151,7 +151,7 @@ const page = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                rows="6"
+                rows={6}
                 className="text-white w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:ring-4 focus:ring-amber-500 focus:ring-opacity-20 outline-none transition-all duration-300 placeholder-gray-400 resize-vertical hover:border-gray-300"
                 placeholder="Tell us how we can help you..."
             ></textarea>
