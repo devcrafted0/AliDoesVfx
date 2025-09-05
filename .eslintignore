@@ -1,0 +1,10 @@
+# Ignore Next.js build output
+.next
+out
+
+# Ignore Node modules
+node_modules
+
+# Ignore Prisma generated client
+prisma/generated
+node_modules/@prisma/client
