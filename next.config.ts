@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["img.youtube.com"], // allow YouTube thumbnails
+    domains: ["img.youtube.com", "img.clerk.com"],
   },
 };
 
