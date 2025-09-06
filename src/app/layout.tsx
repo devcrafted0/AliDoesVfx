@@ -5,7 +5,6 @@ import { Montserrat } from 'next/font/google'
 import { Michroma } from 'next/font/google'
 
 import PageTransition from "@/components/PageTransitions/PageTransition";
-import TransitionOverlay from "@/components/PageTransitions/TransitionOverlay";
 import SmoothScroll from "@/components/Lenis";
 
 const michroma = Michroma({
@@ -39,7 +38,6 @@ export default function RootLayout({
         <body
           className={`${montserrat.variable} ${michroma.variable}`}
           >
-              <TransitionOverlay/>
               <PageTransition>
                 <SmoothScroll>
                     {children}
