@@ -84,6 +84,8 @@ const Page = () => {
                       src={c.imageURL}
                       alt={c.comment}
                       className="rounded-full"
+                      width={100}
+                      height={100}
                     />
                   </div>
                   <div>
