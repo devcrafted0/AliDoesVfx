@@ -23,6 +23,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Ali Does Vfx",
   description: "Learn Creating Stunning Visual Effects",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
