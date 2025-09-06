@@ -83,6 +83,8 @@ const Page = () => {
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover"
+                    width={200}
+                    height={200}
                     />
                 </div>
 

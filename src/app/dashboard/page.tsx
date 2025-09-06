@@ -261,7 +261,7 @@ const Dashboard = () => {
                   <div key={video.id} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <div className="relative">
                       <a href={`/videos/${video.id}`}>
-                        <Image src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
+                        <Image src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" width={300} height={300} />
                       </a>
                     </div>
                     <div className="p-4">

@@ -75,7 +75,7 @@ export default function VideoDetails({ params }: { params: Promise<Params> }) {
         <Navbar/>
       </div>
       <div className="relative w-screen h-100 bg-white flex justify-center items-center overflow-hidden [@media(max-width:680px)]:h-60">
-        <Image src={video.thumbnail} alt={video.title} className="min-w-full min-h-[150%] object-cover [clip-path:inset(50px_0px_50px_0px)]" />
+        <Image src={video.thumbnail} width={400} height={400} alt={video.title} className="min-w-full min-h-[150%] object-cover [clip-path:inset(50px_0px_50px_0px)]" />
         <div className="absolute top-0 left-0 bg-black/50 w-full h-full flex justify-center items-center">
           <h1 className="font-bold text-main [text-shadow:3px_3px_10px_rgba(0,0,0,0.8)] text-[clamp(0.8rem,2vw,2.5rem)]">{video.title}</h1>
         </div>
