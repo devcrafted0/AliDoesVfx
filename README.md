@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 AliDoesVFX - High-Performance Creative Portfolio & CMS
 
-## Getting Started
+### Engineering a Scalable Solution for Visual Storytellers
 
-First, run the development server:
+**Developer:** [DevCrafted](https://github.com/devcrafted0)  
+**Client:** Ali (VFX Artist & Video Editor)  
+**Live Site:** [alidoesvfx.vercel.app](https://alidoesvfx.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗 The Problem & The Solution
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ali needed more than just a landing page; he needed a high-retention platform to bridge the gap between his complex VFX work and his global audience.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I engineered a custom **Full-Stack SaaS-style Portfolio** that allows Ali to manage his cinematic content in real-time. By implementing a custom Admin Dashboard, I removed the technical barrier for the client, allowing him to focus on creativity while the web architecture handles engagement and performance.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 My Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework:** Next.js (App Router) for Server-Side Rendering & SEO optimization.
+- **Database & ORM:** PostgreSQL with **Prisma** for type-safe database management.
+- **Styling:** Tailwind CSS with **Advanced Design Patterns** (Glassmorphism & Framer Motion for VFX-like UI).
+- **Architecture:** Clean Architecture with modular components and custom hooks for global state management.
+- **Management:** Custom **Admin Dashboard** for seamless video/content CRUD operations.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Key Engineering Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Dynamic Content Management:** Integrated Prisma to allow the client to update his portfolio without touching a line of code.
+- **Performance Optimization:** Leveraged Next.js Image/Video optimization to ensure 4K VFX renders load instantly without lagging the UI.
+- **Advanced UX:** Implemented global event listeners and click-outside patterns to create a "Desktop App" feel in the browser.
+- **Engagement Analytics:** Structured the backend to track audience interaction and project reach.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 About the Developer (DevCrafted)
+
+I build scalable, high-performance web applications that solve real-world problems for creators and businesses.
+
+- **GitHub:** [@devcrafted0](https://github.com/devcrafted0)
+- **YouTube:** [DevCrafted](https://www.youtube.com/@devcrafted0)
+- **LinkedIn:** [In/devcrafted0](https://www.linkedin.com/in/devcrafted0/)
+- **X (Twitter):** [@devcrafted0](https://x.com/devcrafted0)
+
+---
+
+_Built with precision. Scaled with passion._
